@@ -10,6 +10,19 @@
 
 ---
 
+## 🛠️ Technology Stack & Frameworks
+
+![Technology Stack & Frameworks Visual Infographic](assets/tech_stack.jpg)
+
+### Core Technologies Breakdown:
+- **Programming Language**: Python 3.14
+- **Web Application Frameworks**: `Flask`, `Streamlit`
+- **Machine Learning & Data Science**: `scikit-learn` (Gradient Boosting, Random Forest, Logistic Regression), `xgboost`, `pandas`, `numpy`, `joblib`
+- **Frontend Design & UI Engine**: HTML5, Vanilla CSS3 (Executive Glassmorphic System), JavaScript (ES6+), `Chart.js`, `AOS.js` Scroll Animations, `GSAP` Timelines, `Canvas-Confetti`, `FontAwesome 6`
+- **Version Control & Cloud Deployment**: Git, GitHub (`iamharishrohith/CineIntelligence`), Vercel, Streamlit Cloud
+
+---
+
 ## 📌 Problem Statement Visual Overview
 
 ![Film Industry Problem Statement](assets/problem_statement.jpg)
