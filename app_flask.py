@@ -9,13 +9,17 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC_DIR = os.path.join(BASE_DIR, 'src')
 MODELS_DIR = os.path.join(BASE_DIR, 'models')
 DATASET_PATH = os.path.join(BASE_DIR, 'dataset', 'imdb_movies_dataset.csv')
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 if SRC_DIR not in sys.path:
     sys.path.insert(0, SRC_DIR)
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
 
 from predict import IMDbRatingPredictor
 
-app = Flask(__name__, template_folder='templates', static_folder='static')
+app = Flask(__name__, template_folder=TEMPLATES_DIR, static_folder=STATIC_DIR)
 
 # Initialize Predictor & Dataset Helper
 predictor = None
@@ -29,7 +33,7 @@ def load_dataset():
         return pd.read_csv(DATASET_PATH)
     return None
 
-# Predefined Option Lists (Directors, Production Houses, Actors, Actresses, Music Directors, Themes)
+# Predefined Option Lists
 DIRECTORS_LIST = [
     "Lokesh Kanagaraj", "Mani Ratnam", "S.S. Rajamouli", "Christopher Nolan", 
     "S. Shankar", "Prashanth Neel", "Sukumar", "Atlee", "Vetrimaaran", "Pa. Ranjith", 
