@@ -1,0 +1,672 @@
+/* CineIntelligence™ Mobile-Optimized Executive Light Theme CSS */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg-light: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-hover: #ffffff;
+    --card-border: #e2e8f0;
+    --card-border-hover: #bfdbfe;
+    
+    --text-main: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+
+    --brand-blue: #2563eb;
+    --brand-blue-hover: #1d4ed8;
+    --brand-indigo: #4f46e5;
+    --brand-purple: #7c3aed;
+    --brand-light: #eff6ff;
+
+    --gradient-hero: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #6366f1 100%);
+    --gradient-btn: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    --gradient-btn-hover: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    
+    --high-bg: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    --high-border: #22c55e;
+    --high-text: #14532d;
+
+    --medium-bg: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    --medium-border: #f59e0b;
+    --medium-text: #78350f;
+
+    --low-bg: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    --low-border: #ef4444;
+    --low-text: #7f1d1d;
+
+    --radius-xl: 20px;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    
+    --glass-blur: blur(20px);
+    --box-shadow-light: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+    --box-shadow-hover: 0 12px 24px -4px rgba(37, 99, 235, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-light);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(238, 242, 255, 0.8) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(243, 232, 255, 0.7) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-heading {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Apple Frosted Light Glass Navbar */
+.navbar {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--card-border);
+    padding: 0.9rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+}
+
+.nav-logo {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 1.5px solid rgba(37, 99, 235, 0.2);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.12);
+    transition: transform 0.25s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.04);
+}
+
+.nav-title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.98rem;
+    transition: all 0.2s ease;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--brand-blue);
+    font-weight: 700;
+}
+
+/* Action Buttons */
+.btn-primary {
+    background: var(--gradient-btn);
+    color: #ffffff !important;
+    padding: 0.75rem 1.6rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.98rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px; /* Touch friendly minimum height */
+}
+
+.btn-primary:hover {
+    background: var(--gradient-btn-hover);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+    transform: translateY(-2px);
+}
+
+/* Hero Section Landing */
+.hero-wrapper {
+    max-width: 1240px;
+    margin: 3.5rem auto 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+.hero-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-xl);
+    padding: 4.5rem 3.5rem;
+    text-align: center;
+    box-shadow: var(--box-shadow-light);
+}
+
+.hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--brand-light);
+    color: var(--brand-blue);
+    border: 1px solid #bfdbfe;
+    padding: 8px 22px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+}
+
+.hero-title {
+    font-size: 3.6rem;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.2rem;
+    color: var(--text-main);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 820px;
+    margin: 0 auto 2.5rem auto;
+    font-weight: 400;
+}
+
+.btn-hero {
+    font-size: 1.15rem;
+    padding: 1rem 2.6rem;
+    border-radius: 14px;
+}
+
+/* Feature Grid Cards */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 24px;
+    max-width: 1240px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+.feature-box {
+    background: var(--bg-card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 2.2rem;
+    box-shadow: var(--box-shadow-light);
+    transition: all 0.25s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-4px);
+    border-color: var(--card-border-hover);
+    box-shadow: var(--box-shadow-hover);
+}
+
+.feature-box-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--brand-light);
+    border: 1px solid #bfdbfe;
+    color: var(--brand-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.feature-box-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.feature-box-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Counters Grid */
+.counters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1240px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+.counter-card {
+    background: var(--bg-card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem;
+    text-align: center;
+    box-shadow: var(--box-shadow-light);
+}
+
+.counter-num {
+    font-size: 2.6rem;
+    font-weight: 900;
+    font-family: 'Outfit', sans-serif;
+    color: var(--brand-blue);
+}
+
+.counter-lbl {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.3rem;
+}
+
+/* App Form Container */
+.app-container {
+    max-width: 1300px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+.form-card {
+    background: var(--bg-card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    box-shadow: var(--box-shadow-light);
+    margin-bottom: 2.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 1.4rem;
+}
+
+.form-label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.form-control, .form-select {
+    padding: 0.75rem 1.1rem;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    color: var(--text-main);
+    font-size: 16px; /* 16px prevents iOS Safari auto-zoom */
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    outline: none;
+    transition: all 0.2s ease;
+    min-height: 46px; /* Touch target size */
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--brand-blue);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-select option {
+    background-color: #ffffff;
+    color: #0f172a;
+}
+
+/* Multi-select check grid chips */
+.tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 10px;
+    max-height: 240px;
+    overflow-y: auto;
+    padding: 12px;
+    background: #f8fafc;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    -webkit-overflow-scrolling: touch;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+    min-height: 40px; /* Touch target */
+}
+
+.checkbox-label:hover {
+    background: #e2e8f0;
+    color: var(--text-main);
+}
+
+.checkbox-label input[type="checkbox"] {
+    accent-color: var(--brand-blue);
+    width: 18px;
+    height: 18px;
+}
+
+/* Results Display Cards */
+.results-container {
+    display: none;
+    margin-top: 2.5rem;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+}
+
+.result-card {
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    border: 1.5px solid transparent;
+    box-shadow: var(--box-shadow-light);
+}
+
+.result-card.high {
+    background: var(--high-bg);
+    border-color: var(--high-border);
+    color: var(--high-text);
+}
+
+.result-card.medium {
+    background: var(--medium-bg);
+    border-color: var(--medium-border);
+    color: var(--medium-text);
+}
+
+.result-card.low {
+    background: var(--low-bg);
+    border-color: var(--low-border);
+    color: var(--low-text);
+}
+
+.badge {
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+}
+
+.badge.high { background: #16a34a; }
+.badge.medium { background: #d97706; }
+.badge.low { background: #dc2626; }
+
+/* Reputation Index Grid Pills */
+.metrics-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-top: 1.4rem;
+}
+
+.metric-pill {
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.metric-pill-val {
+    font-weight: 900;
+    font-size: 1.5rem;
+    font-family: 'Outfit', sans-serif;
+    color: var(--brand-blue);
+}
+
+.metric-pill-lbl {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--card-border);
+    margin-top: 5rem;
+    background: #ffffff;
+}
+
+/* =========================================================
+   COMPREHENSIVE MOBILE UI/UX ALIGNMENT & DESIGN RECONSTRUCTION
+   ========================================================= */
+
+/* Tablet Screens (≤ 992px) */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 0.9rem 2rem;
+    }
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile Screens (≤ 768px) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.8rem 1rem;
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .nav-brand {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-logo {
+        height: 48px;
+    }
+
+    .nav-title {
+        font-size: 1.45rem;
+    }
+
+    .nav-links {
+        gap: 12px;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 6px 8px;
+    }
+
+    .btn-primary {
+        padding: 0.65rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .hero-wrapper {
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+    }
+
+    .hero-card {
+        padding: 2.5rem 1.2rem;
+        border-radius: 16px;
+    }
+
+    .hero-pill {
+        font-size: 0.75rem;
+        padding: 6px 14px;
+        margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+        font-size: 2.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.05rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .btn-hero {
+        width: 100%;
+        justify-content: center;
+        font-size: 1.05rem;
+        padding: 0.9rem 1.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0 1rem;
+        margin: 1.8rem auto;
+    }
+
+    .feature-box {
+        padding: 1.5rem;
+    }
+
+    .counters-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 1rem;
+        margin: 1.8rem auto;
+    }
+
+    .counter-card {
+        padding: 1.2rem 0.8rem;
+    }
+
+    .counter-num {
+        font-size: 2rem;
+    }
+
+    .app-container {
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+    }
+
+    .form-card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 16px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .tags-grid {
+        grid-template-columns: 1fr;
+        max-height: 200px;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .result-card {
+        padding: 1.6rem 1.2rem;
+        border-radius: 16px;
+    }
+
+    .metrics-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .metric-pill {
+        padding: 10px 6px;
+    }
+
+    .metric-pill-val {
+        font-size: 1.3rem;
+    }
+}
+
+/* Small Mobile Phones (≤ 480px) */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.85rem;
+    }
+
+    .nav-title {
+        font-size: 1.3rem;
+    }
+
+    .counters-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

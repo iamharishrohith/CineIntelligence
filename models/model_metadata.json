@@ -1,0 +1,346 @@
+{
+    "best_model_name": "Gradient Boosting",
+    "feature_names": [
+        "release_year",
+        "runtime_minutes",
+        "is_short_film",
+        "budget_usd",
+        "marketing_budget_usd",
+        "director_score",
+        "cast_score",
+        "music_score",
+        "budget_per_minute",
+        "star_synergy_score",
+        "marketing_ratio",
+        "release_decade",
+        "log_budget",
+        "log_marketing",
+        "sentiment_score",
+        "theme_count",
+        "has_women_centric",
+        "has_biopic_lifestory",
+        "has_commercial_action",
+        "has_tech_scifi",
+        "popularity_tags_count",
+        "has_star_power",
+        "has_hit_music",
+        "has_pan_india",
+        "has_festival_acclaim",
+        "primary_genre_Action",
+        "primary_genre_Animation",
+        "primary_genre_Comedy",
+        "primary_genre_Documentary",
+        "primary_genre_Drama",
+        "primary_genre_Fantasy",
+        "primary_genre_Horror",
+        "primary_genre_Mystery",
+        "primary_genre_Romance",
+        "primary_genre_Sci-Fi",
+        "primary_genre_Thriller",
+        "language_Arabic",
+        "language_Bengali",
+        "language_English",
+        "language_French",
+        "language_German",
+        "language_Hindi",
+        "language_Japanese",
+        "language_Kannada",
+        "language_Korean",
+        "language_Malayalam",
+        "language_Marathi",
+        "language_Punjabi",
+        "language_Spanish",
+        "language_Tamil",
+        "language_Telugu",
+        "country_France",
+        "country_India",
+        "country_Japan",
+        "country_Palestine",
+        "country_South Korea",
+        "country_UK",
+        "country_USA",
+        "content_rating_A",
+        "content_rating_G",
+        "content_rating_PG",
+        "content_rating_PG-13",
+        "content_rating_R",
+        "content_rating_U",
+        "content_rating_UA",
+        "sentiment_Dramatic / Intense"
+    ],
+    "num_cols": [
+        "release_year",
+        "runtime_minutes",
+        "is_short_film",
+        "budget_usd",
+        "marketing_budget_usd",
+        "director_score",
+        "cast_score",
+        "music_score",
+        "budget_per_minute",
+        "star_synergy_score",
+        "marketing_ratio",
+        "release_decade",
+        "log_budget",
+        "log_marketing",
+        "sentiment_score",
+        "theme_count",
+        "has_women_centric",
+        "has_biopic_lifestory",
+        "has_commercial_action",
+        "has_tech_scifi",
+        "popularity_tags_count",
+        "has_star_power",
+        "has_hit_music",
+        "has_pan_india",
+        "has_festival_acclaim"
+    ],
+    "cat_cols": [
+        "primary_genre",
+        "language",
+        "country",
+        "content_rating",
+        "sentiment"
+    ],
+    "feature_importances": {
+        "star_synergy_score": 0.89302,
+        "director_score": 0.08844,
+        "cast_score": 0.01627,
+        "runtime_minutes": 0.00108,
+        "primary_genre_Sci-Fi": 0.00042,
+        "content_rating_R": 0.0002,
+        "marketing_ratio": 0.00017,
+        "log_budget": 7e-05,
+        "budget_usd": 6e-05,
+        "content_rating_U": 5e-05,
+        "budget_per_minute": 4e-05,
+        "content_rating_PG-13": 4e-05,
+        "country_India": 4e-05,
+        "marketing_budget_usd": 3e-05,
+        "language_Tamil": 2e-05,
+        "log_marketing": 1e-05,
+        "language_English": 1e-05,
+        "country_USA": 0.0,
+        "is_short_film": 0.0,
+        "language_Malayalam": 0.0,
+        "release_year": 0.0,
+        "language_German": 0.0,
+        "language_Telugu": 0.0,
+        "primary_genre_Thriller": 0.0,
+        "content_rating_UA": 0.0,
+        "sentiment_Dramatic / Intense": 0.0,
+        "language_Spanish": 0.0,
+        "country_France": 0.0,
+        "country_Palestine": 0.0,
+        "country_Japan": 0.0,
+        "country_UK": 0.0,
+        "content_rating_A": 0.0,
+        "content_rating_G": 0.0,
+        "content_rating_PG": 0.0,
+        "has_women_centric": 0.0,
+        "primary_genre_Mystery": 0.0,
+        "language_Bengali": 0.0,
+        "language_Arabic": 0.0,
+        "language_French": 0.0,
+        "language_Kannada": 0.0,
+        "language_Japanese": 0.0,
+        "language_Hindi": 0.0,
+        "language_Punjabi": 0.0,
+        "language_Marathi": 0.0,
+        "language_Korean": 0.0,
+        "country_South Korea": 0.0,
+        "primary_genre_Horror": 0.0,
+        "primary_genre_Fantasy": 0.0,
+        "primary_genre_Drama": 0.0,
+        "primary_genre_Documentary": 0.0,
+        "has_festival_acclaim": 0.0,
+        "has_biopic_lifestory": 0.0,
+        "has_commercial_action": 0.0,
+        "has_tech_scifi": 0.0,
+        "popularity_tags_count": 0.0,
+        "has_star_power": 0.0,
+        "has_hit_music": 0.0,
+        "has_pan_india": 0.0,
+        "release_decade": 0.0,
+        "primary_genre_Action": 0.0,
+        "primary_genre_Animation": 0.0,
+        "primary_genre_Comedy": 0.0,
+        "sentiment_score": 0.0,
+        "theme_count": 0.0,
+        "music_score": 0.0,
+        "primary_genre_Romance": -0.0
+    },
+    "evaluation_results": {
+        "Logistic Regression": {
+            "accuracy": 0.9898,
+            "precision": 0.9898,
+            "recall": 0.9898,
+            "f1_score": 0.9896,
+            "roc_auc": 0.9995,
+            "confusion_matrix": [
+                [
+                    4,
+                    2,
+                    0
+                ],
+                [
+                    0,
+                    451,
+                    3
+                ],
+                [
+                    0,
+                    5,
+                    512
+                ]
+            ],
+            "classification_report": {
+                "Low": {
+                    "precision": 1.0,
+                    "recall": 0.6666666666666666,
+                    "f1-score": 0.8,
+                    "support": 6.0
+                },
+                "Medium": {
+                    "precision": 0.9847161572052402,
+                    "recall": 0.9933920704845814,
+                    "f1-score": 0.9890350877192983,
+                    "support": 454.0
+                },
+                "High": {
+                    "precision": 0.9941747572815534,
+                    "recall": 0.9903288201160542,
+                    "f1-score": 0.9922480620155039,
+                    "support": 517.0
+                },
+                "accuracy": 0.9897645854657113,
+                "macro avg": {
+                    "precision": 0.9929636381622645,
+                    "recall": 0.8834625190891008,
+                    "f1-score": 0.927094383244934,
+                    "support": 977.0
+                },
+                "weighted avg": {
+                    "precision": 0.9898152352975866,
+                    "recall": 0.9897645854657113,
+                    "f1-score": 0.9895743888296592,
+                    "support": 977.0
+                }
+            }
+        },
+        "Random Forest": {
+            "accuracy": 0.9949,
+            "precision": 0.9949,
+            "recall": 0.9949,
+            "f1_score": 0.9949,
+            "roc_auc": 0.9998,
+            "confusion_matrix": [
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    449,
+                    5
+                ],
+                [
+                    0,
+                    0,
+                    517
+                ]
+            ],
+            "classification_report": {
+                "Low": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 6.0
+                },
+                "Medium": {
+                    "precision": 1.0,
+                    "recall": 0.9889867841409692,
+                    "f1-score": 0.9944629014396457,
+                    "support": 454.0
+                },
+                "High": {
+                    "precision": 0.9904214559386973,
+                    "recall": 1.0,
+                    "f1-score": 0.9951876804619827,
+                    "support": 517.0
+                },
+                "accuracy": 0.9948822927328557,
+                "macro avg": {
+                    "precision": 0.9968071519795658,
+                    "recall": 0.9963289280469897,
+                    "f1-score": 0.9965501939672095,
+                    "support": 977.0
+                },
+                "weighted avg": {
+                    "precision": 0.9949313129174069,
+                    "recall": 0.9948822927328557,
+                    "f1-score": 0.994880438129421,
+                    "support": 977.0
+                }
+            }
+        },
+        "Gradient Boosting": {
+            "accuracy": 0.998,
+            "precision": 0.998,
+            "recall": 0.998,
+            "f1_score": 0.998,
+            "roc_auc": 0.9959,
+            "confusion_matrix": [
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    452,
+                    2
+                ],
+                [
+                    0,
+                    0,
+                    517
+                ]
+            ],
+            "classification_report": {
+                "Low": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 6.0
+                },
+                "Medium": {
+                    "precision": 1.0,
+                    "recall": 0.9955947136563876,
+                    "f1-score": 0.9977924944812362,
+                    "support": 454.0
+                },
+                "High": {
+                    "precision": 0.9961464354527938,
+                    "recall": 1.0,
+                    "f1-score": 0.9980694980694981,
+                    "support": 517.0
+                },
+                "accuracy": 0.9979529170931423,
+                "macro avg": {
+                    "precision": 0.9987154784842646,
+                    "recall": 0.998531571218796,
+                    "f1-score": 0.9986206641835781,
+                    "support": 977.0
+                },
+                "weighted avg": {
+                    "precision": 0.9979608056592573,
+                    "recall": 0.9979529170931423,
+                    "f1-score": 0.997952633568487,
+                    "support": 977.0
+                }
+            }
+        }
+    }
+}

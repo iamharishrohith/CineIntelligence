@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineIntelligence™ | Prediction Engine Dashboard</title>
+
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- AOS Animation Library CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>
+</head>
+<body>
+
+    <!-- Minimal Header Navbar -->
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="CineIntelligence Logo" class="nav-logo">
+            <span class="nav-title">CineIntelligence™</span>
+        </a>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/app" class="btn-primary">
+                <i class="fa-solid fa-rocket"></i> Launch Application
+            </a>
+        </div>
+    </nav>
+
+    <main class="app-container">
+        <!-- Input Specification Form Card -->
+        <section class="form-card" data-aos="fade-up">
+            <div style="margin-bottom: 2rem;">
+                <h2 style="font-size: 2.2rem; font-weight: 900; color: var(--text-main); font-family: 'Outfit';"><i class="fa-solid fa-sliders" style="color: var(--brand-blue);"></i> Film Specifications & Creative Team</h2>
+                <p style="color: var(--text-secondary); font-size: 1rem;">Provide film metadata, select Pan-India star cast, currency, and multi-select content themes.</p>
+            </div>
+
+            <form id="prediction-form">
+                <div class="form-grid">
+                    <!-- Column 1 -->
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">Film Title</label>
+                            <input type="text" id="title" class="form-control" value="Vikram 2: The Syndicate" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Primary Genre</label>
+                            <select id="primary_genre" class="form-select">
+                                <option value="Action" selected>Action</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Comedy">Comedy</option>
+                                <option value="Sci-Fi">Sci-Fi</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Thriller">Thriller</option>
+                                <option value="Animation">Animation</option>
+                                <option value="Mystery">Mystery</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Language</label>
+                            <select id="language" class="form-select">
+                                <option value="Tamil" selected>Tamil</option>
+                                <option value="Telugu">Telugu</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Malayalam">Malayalam</option>
+                                <option value="Kannada">Kannada</option>
+                                <option value="English">English</option>
+                                <option value="Bengali">Bengali</option>
+                                <option value="Marathi">Marathi</option>
+                                <option value="Punjabi">Punjabi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Runtime (Minutes)</label>
+                            <input type="number" id="runtime_minutes" class="form-control" value="165" min="5" max="300">
+                        </div>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">Director</label>
+                            <select id="director_name" class="form-select">
+                                {% for d in options.directors %}
+                                <option value="{{ d }}">{{ d }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Production Banner</label>
+                            <select id="production_house" class="form-select">
+                                {% for b in options.banners %}
+                                <option value="{{ b }}">{{ b }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Lead Actor</label>
+                            <select id="lead_actor" class="form-select">
+                                {% for a in options.actors %}
+                                <option value="{{ a }}">{{ a }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Lead Actress</label>
+                            <select id="lead_actress" class="form-select">
+                                {% for ac in options.actresses %}
+                                <option value="{{ ac }}">{{ ac }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Column 3 -->
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">Music Director</label>
+                            <select id="music_director" class="form-select">
+                                {% for m in options.music_directors %}
+                                <option value="{{ m }}">{{ m }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div class="form-group">
+                                <label class="form-label">Currency</label>
+                                <select id="currency" class="form-select">
+                                    <option value="INR (₹)" selected>INR (₹)</option>
+                                    <option value="USD ($)">USD ($)</option>
+                                    <option value="EUR (€)">EUR (€)</option>
+                                    <option value="GBP (£)">GBP (£)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Unit</label>
+                                <select id="budget_unit" class="form-select">
+                                    <option value="Crores" selected>Crores</option>
+                                    <option value="Lakhs">Lakhs</option>
+                                    <option value="Millions">Millions</option>
+                                    <option value="Thousands">Thousands</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div class="form-group">
+                                <label class="form-label">Prod Budget</label>
+                                <input type="number" id="production_budget_val" class="form-control" value="180" step="5">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Mkt Budget</label>
+                                <input type="number" id="marketing_budget_val" class="form-control" value="35" step="2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Content Sentiment</label>
+                            <select id="sentiment" class="form-select">
+                                <option value="Dramatic / Intense" selected>Dramatic / Intense</option>
+                                <option value="Inspiring / Positive">Inspiring / Positive</option>
+                                <option value="Emotional / Heartwarming">Emotional / Heartwarming</option>
+                                <option value="Suspenseful / Thrilling">Suspenseful / Thrilling</option>
+                                <option value="Humorous / Lighthearted">Humorous / Lighthearted</option>
+                                <option value="Dark / Gritty">Dark / Gritty</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid var(--card-border); margin: 2rem 0;">
+
+                <!-- Multi-select Checkbox Chips Section -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
+                    <div class="form-group">
+                        <label class="form-label">Journal Content Themes (50+ Options)</label>
+                        <div class="tags-grid">
+                            {% for theme in options.themes %}
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="content_themes" value="{{ theme }}" {% if theme in ['Action Thriller', 'Commercial Mass Entertainer', 'Gangster & Underworld Saga', 'Multilingual Pan-India Spectacle'] %}checked{% endif %}>
+                                {{ theme }}
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Popularity Drivers & Star Power Tags</label>
+                        <div class="tags-grid">
+                            {% for tag in options.popularity_tags %}
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="popularity_tags" value="{{ tag }}" {% if tag in ['A-List Lead Actor Star Power', 'Hit Music / Soundtrack', 'Pan-India Release Franchise', 'Director Cult Following'] %}checked{% endif %}>
+                                {{ tag }}
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2.2rem;">
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; font-size: 1.15rem; padding: 1.1rem;">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Execute Inference & Strategy Generation
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Animated Prediction Results Display Card -->
+        <section id="results-container" class="results-container">
+            <h2 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 1.5rem; color: var(--text-main); font-family: 'Outfit';"><i class="fa-solid fa-chart-pie" style="color: var(--brand-blue);"></i> Prediction Results & Strategic Analytics</h2>
+            
+            <div class="results-grid">
+                <!-- Result Card -->
+                <div id="result-card-box" class="result-card high">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 800; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em;">Predicted Quality Class</span>
+                        <span id="res-badge" class="badge high">HIGH</span>
+                    </div>
+                    <h2 id="res-heading" style="font-size: 2.6rem; margin: 1rem 0; font-weight: 900; font-family: 'Outfit';"><i class="fa-solid fa-circle-check"></i> High Quality</h2>
+                    <p style="font-size: 1.1rem;">Inference Confidence: <strong id="res-confidence" style="color: var(--brand-blue);">99.8%</strong></p>
+                    <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 1.2rem 0;">
+                    <p style="font-size: 1rem;"><strong>Action Status:</strong> <span id="res-action">Greenlight / Instant Acquisition</span></p>
+
+                    <!-- Chart.js Interactive Doughnut Chart Container -->
+                    <div style="margin-top: 1.5rem; background: #ffffff; padding: 1.2rem; border-radius: 12px; border: 1px solid var(--card-border);">
+                        <h4 style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; text-align: center;">Class Probability Distribution</h4>
+                        <div style="position: relative; height: 180px;">
+                            <canvas id="probChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.8rem;">
+                        <h4 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em;">Calculated Reputation Indices</h4>
+                        <div class="metrics-row">
+                            <div class="metric-pill">
+                                <div id="idx-dir" class="metric-pill-val">9.4</div>
+                                <div class="metric-pill-lbl">Director Index</div>
+                            </div>
+                            <div class="metric-pill">
+                                <div id="idx-actor" class="metric-pill-val">9.7</div>
+                                <div class="metric-pill-lbl">Lead Actor Index</div>
+                            </div>
+                            <div class="metric-pill">
+                                <div id="idx-music" class="metric-pill-val">9.6</div>
+                                <div class="metric-pill-lbl">Music Director Index</div>
+                            </div>
+                            <div class="metric-pill">
+                                <div id="idx-banner" class="metric-pill-val">9.5</div>
+                                <div class="metric-pill-lbl">Banner Index</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategic Advice Card -->
+                <div class="feature-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 1.4rem; font-family: 'Outfit';"><i class="fa-solid fa-bullseye" style="color: var(--brand-blue);"></i> Content Acquisition Strategy</h3>
+                        <div style="margin-bottom: 1.2rem; background: var(--brand-light); padding: 1.2rem; border-radius: 12px; border-left: 4px solid var(--brand-blue);">
+                            <strong style="color: var(--brand-blue);">Acquisition Classification:</strong> <br><span id="strat-tier" style="color: var(--text-main);">Tier-1 Premium Acquisition</span>
+                        </div>
+                        <div style="margin-bottom: 1.2rem; background: #f0fdf4; padding: 1.2rem; border-radius: 12px; border-left: 4px solid #16a34a;">
+                            <strong style="color: #15803d;">Marketing Allocation:</strong> <br><span id="strat-mkt" style="color: var(--text-main);">Allocate strong pre-release campaign (25-35% of budget). Highlight lead cast & soundtrack.</span>
+                        </div>
+                        <div style="margin-bottom: 1.2rem; background: #fffbeb; padding: 1.2rem; border-radius: 12px; border-left: 4px solid #d97706;">
+                            <strong style="color: #b45309;">Distribution Strategy:</strong> <br><span id="strat-dist" style="color: var(--text-main);">Prime-time digital premiere, Pan-India & Global theatrical release.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 CineIntelligence™ — Enterprise Film Rating & Commercial Acquisition Platform.</p>
+    </footer>
+
+    <!-- Frontend Animation & Chart Libraries -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    
+    <!-- Custom Main JS Script -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineIntelligence™ | About, Benchmarks, EDA & System Architecture</title>
+
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- AOS Animation Library CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>
+</head>
+<body>
+
+    <!-- Minimal Header Navbar -->
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="CineIntelligence Logo" class="nav-logo">
+            <span class="nav-title">CineIntelligence™</span>
+        </a>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link active">About</a>
+            <a href="/app" class="btn-primary">
+                <i class="fa-solid fa-rocket"></i> Launch Application
+            </a>
+        </div>
+    </nav>
+
+    <main class="app-container">
+
+        <!-- Section 1: Platform Overview -->
+        <section class="form-card" data-aos="fade-up">
+            <h1 style="font-size: 2.4rem; font-weight: 900; margin-bottom: 1rem; font-family: 'Outfit'; color: var(--text-main);"><i class="fa-solid fa-circle-info" style="color: var(--brand-blue);"></i> About CineIntelligence™</h1>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem;">
+                CineIntelligence™ is an enterprise AI decision-support platform engineered for film production houses, theatrical distributors, and OTT streaming platforms (*Netflix, Amazon Prime Video, Disney+ Hotstar*).
+            </p>
+            <p style="color: var(--text-secondary); font-size: 1.05rem;">
+                It evaluates pre-release movie proposals, predicts expected IMDb Rating Categories (`High` ≥ 7.5, `Medium` 5.5 - 7.4, `Low` < 5.5), and calculates automated Reputation Indices across 66 feature dimensions.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 2rem;">
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-users"></i></div>
+                    <h3 class="feature-box-title">Pan-India Star Synergy</h3>
+                    <p class="feature-box-desc">Automated reputation indices (1.0 - 10.0) for Directors, Lead Actors, Actresses, Co-actors, and Music Composers.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3 class="feature-box-title">52+ Movie Content Themes</h3>
+                    <p class="feature-box-desc">Deep multi-select vectorization across commercial, artistic, regional, and global cinema genres.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-globe"></i></div>
+                    <h3 class="feature-box-title">Multi-Currency Engine</h3>
+                    <p class="feature-box-desc">Support for INR (₹), USD ($), EUR (€), and GBP (£) across Crores, Lakhs, Millions, and Thousands.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="feature-box-title">Leakage-Free ML Architecture</h3>
+                    <p class="feature-box-desc">Strict 80/20 train-test split before scaling and encoding, yielding 0.9980 Gradient Boosting precision.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Model Benchmarks & Metrics -->
+        <section class="form-card" data-aos="fade-up">
+            <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 1rem; font-family: 'Outfit'; color: var(--text-main);"><i class="fa-solid fa-chart-line" style="color: var(--brand-blue);"></i> Model Benchmarks & Metrics</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Quantitative performance benchmarks evaluated on a stratified 20% test partition:
+            </p>
+
+            {% if metadata and metadata.evaluation_results %}
+            <div style="overflow-x: auto; margin-bottom: 2rem;">
+                <table style="width: 100%; border-collapse: collapse; background: #ffffff; border-radius: 12px; border: 1px solid var(--card-border);">
+                    <thead>
+                        <tr style="background: var(--brand-light); text-align: left; font-family: 'Outfit';">
+                            <th style="padding: 14px; border-bottom: 1px solid var(--card-border);">Algorithm</th>
+                            <th style="padding: 14px; border-bottom: 1px solid var(--card-border);">Accuracy</th>
+                            <th style="padding: 14px; border-bottom: 1px solid var(--card-border);">Precision</th>
+                            <th style="padding: 14px; border-bottom: 1px solid var(--card-border);">Recall</th>
+                            <th style="padding: 14px; border-bottom: 1px solid var(--card-border);">F1 Score</th>
+                            <th style="padding: 14px; border-bottom: 1px solid var(--card-border);">ROC-AUC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for model_name, metrics in metadata.evaluation_results.items() %}
+                        <tr style="{% if model_name == metadata.best_model_name %}background: #f0fdf4; font-weight: 700;{% endif %} border-bottom: 1px solid var(--card-border);">
+                            <td style="padding: 12px 14px;">{{ model_name }} {% if model_name == metadata.best_model_name %}<span class="badge high" style="padding: 2px 8px; font-size: 0.75rem;">BEST MODEL</span>{% endif %}</td>
+                            <td style="padding: 12px 14px;">{{ metrics.accuracy }}</td>
+                            <td style="padding: 12px 14px;">{{ metrics.precision }}</td>
+                            <td style="padding: 12px 14px;">{{ metrics.recall }}</td>
+                            <td style="padding: 12px 14px;">{{ metrics.f1_score }}</td>
+                            <td style="padding: 12px 14px;">{{ metrics.roc_auc }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+
+            <!-- Top Feature Drivers -->
+            {% if metadata and metadata.feature_importances %}
+            <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; font-family: 'Outfit';">Top Predictor Drivers</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                {% for feat_name, imp in metadata.feature_importances.items() %}
+                {% if loop.index <= 8 %}
+                <div class="metric-pill" style="text-align: left;">
+                    <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-main);">{{ feat_name }}</div>
+                    <div style="font-size: 1.1rem; font-weight: 900; color: var(--brand-blue);">{{ (imp * 100) | round(2) }}%</div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </section>
+
+        <!-- Section 3: Dataset Explorer (EDA) -->
+        <section class="form-card" data-aos="fade-up">
+            <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 1rem; font-family: 'Outfit'; color: var(--text-main);"><i class="fa-solid fa-database" style="color: var(--brand-blue);"></i> Dataset Explorer (EDA)</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Exploratory Data Analysis across 4,883+ real-world movie records:
+            </p>
+
+            <div class="counters-grid" style="padding: 0; margin-bottom: 2rem;">
+                <div class="counter-card">
+                    <div class="counter-num" style="color: #16a34a;">35.2%</div>
+                    <div class="counter-lbl">High Category (≥ 7.5)</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-num" style="color: #d97706;">48.5%</div>
+                    <div class="counter-lbl">Medium Category (5.5-7.4)</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-num" style="color: #dc2626;">16.3%</div>
+                    <div class="counter-lbl">Low Category (< 5.5)</div>
+                </div>
+            </div>
+
+            {% if dataset_sample %}
+            <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; font-family: 'Outfit';">Sample Record Inspector</h3>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; background: #ffffff; border-radius: 12px; border: 1px solid var(--card-border); font-size: 0.85rem;">
+                    <thead>
+                        <tr style="background: #f8fafc; text-align: left; font-family: 'Outfit';">
+                            <th style="padding: 10px; border-bottom: 1px solid var(--card-border);">Title</th>
+                            <th style="padding: 10px; border-bottom: 1px solid var(--card-border);">Genre</th>
+                            <th style="padding: 10px; border-bottom: 1px solid var(--card-border);">Director Score</th>
+                            <th style="padding: 10px; border-bottom: 1px solid var(--card-border);">Cast Score</th>
+                            <th style="padding: 10px; border-bottom: 1px solid var(--card-border);">Budget ($)</th>
+                            <th style="padding: 10px; border-bottom: 1px solid var(--card-border);">Rating Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in dataset_sample %}
+                        <tr style="border-bottom: 1px solid var(--card-border);">
+                            <td style="padding: 8px 10px; font-weight: 700;">{{ row.get('title', row.get('movie_name', 'Film Record')) }}</td>
+                            <td style="padding: 8px 10px;">{{ row.get('primary_genre', row.get('genre', 'Action')) }}</td>
+                            <td style="padding: 8px 10px;">{{ row.get('director_score', 7.5) }}</td>
+                            <td style="padding: 8px 10px;">{{ row.get('cast_score', 7.0) }}</td>
+                            <td style="padding: 8px 10px;">${{ "{:,.0f}".format(row.get('budget_usd', 15000000)) }}</td>
+                            <td style="padding: 8px 10px;"><span class="badge {% if row.get('rating_category') == 'High' %}high{% elif row.get('rating_category') == 'Medium' %}medium{% else %}low{% endif %}" style="font-size: 0.75rem; padding: 2px 8px;">{{ row.get('rating_category', 'High') }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </section>
+
+        <!-- Section 4: System Pipeline Architecture -->
+        <section class="form-card" data-aos="fade-up">
+            <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 1rem; font-family: 'Outfit'; color: var(--text-main);"><i class="fa-solid fa-diagram-project" style="color: var(--brand-blue);"></i> Technical System Architecture</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                End-to-end data flow from user inputs to automated feature engineering, machine learning classification, and commercial acquisition recommendations:
+            </p>
+
+            <div style="background: #ffffff; padding: 2rem; border-radius: 14px; border: 1px solid var(--card-border); box-shadow: var(--box-shadow-light);">
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div style="background: var(--brand-light); padding: 1.2rem 1.6rem; border-radius: 10px; border-left: 4px solid var(--brand-blue);">
+                        <strong style="color: var(--brand-blue); font-size: 1.05rem;">Step 1: Input Ingestion & Reputation Index Engine</strong><br>
+                        <span style="color: var(--text-secondary); font-size: 0.95rem;">Select Director, Banner, Lead Actor, Lead Actress, and Music Director. Background engine computes reputation scores (1.0 - 10.0).</span>
+                    </div>
+                    <div style="background: #f0fdf4; padding: 1.2rem 1.6rem; border-radius: 10px; border-left: 4px solid #16a34a;">
+                        <strong style="color: #15803d; font-size: 1.05rem;">Step 2: Feature Engineering (66 Dimensions)</strong><br>
+                        <span style="color: var(--text-secondary); font-size: 0.95rem;">Vectorizes 52+ journal content themes, budget currency scaling to USD, runtime classification, and popularity tags.</span>
+                    </div>
+                    <div style="background: #fffbeb; padding: 1.2rem 1.6rem; border-radius: 10px; border-left: 4px solid #d97706;">
+                        <strong style="color: #b45309; font-size: 1.05rem;">Step 3: Machine Learning Inference Engine</strong><br>
+                        <span style="color: var(--text-secondary); font-size: 0.95rem;">Evaluates scaled features using Gradient Boosting Classifier to generate class probability distributions.</span>
+                    </div>
+                    <div style="background: #eff6ff; padding: 1.2rem 1.6rem; border-radius: 10px; border-left: 4px solid var(--brand-indigo);">
+                        <strong style="color: var(--brand-indigo); font-size: 1.05rem;">Step 4: Strategic Analytics & Content Acquisition</strong><br>
+                        <span style="color: var(--text-secondary); font-size: 0.95rem;">Outputs Greenlight/Acquisition badge, marketing allocation percentages, and platform distribution positioning.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 CineIntelligence™ — Enterprise Film Rating & Commercial Acquisition Platform.</p>
+    </footer>
+
+    <!-- Animation Libraries (AOS & GSAP) -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.scrollTo(0, 0);
+            AOS.init({ duration: 800, once: true, offset: 50, startEvent: 'DOMContentLoaded' });
+        });
+    </script>
+</body>
+</html>

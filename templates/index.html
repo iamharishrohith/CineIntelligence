@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineIntelligence™ | Pre-Release Film Rating & Acquisition Intelligence</title>
+
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- AOS Animation Library CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>
+</head>
+<body>
+
+    <!-- Minimal Header Navbar -->
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="CineIntelligence Logo" class="nav-logo">
+            <span class="nav-title">CineIntelligence™</span>
+        </a>
+        <div class="nav-links">
+            <a href="/" class="nav-link active">Home</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/app" class="btn-primary">
+                <i class="fa-solid fa-rocket"></i> Launch Application
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Landing Section with GSAP & AOS Animations -->
+    <main class="hero-wrapper">
+        <section class="hero-card" data-aos="zoom-in" data-aos-duration="800">
+            <div class="hero-pill" data-aos="fade-down" data-aos-delay="200">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> AI-Powered Pre-Release Film Intelligence
+            </div>
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="300">
+                Predict Film Ratings & Commercial Success Before Release
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
+                CineIntelligence™ empowers film studios, theatrical distributors, and streaming platforms (Netflix, Prime, Disney+ Hotstar) with machine learning predictions, star synergy ratings, and actionable content acquisition strategies.
+            </p>
+            <div data-aos="fade-up" data-aos-delay="500">
+                <a href="/app" class="btn-primary btn-hero">
+                    <i class="fa-solid fa-clapperboard"></i> Launch Live Predictor Engine
+                </a>
+            </div>
+        </section>
+
+        <!-- Feature Grid Cards with Staggered AOS Animations -->
+        <section class="features-grid">
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-box-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
+                <h3 class="feature-box-title">Pan-India Star Synergy</h3>
+                <p class="feature-box-desc">Automated reputation indices (1.0 - 10.0) for Directors, Lead Actors, Actresses, Co-actors, and Music Composers.</p>
+            </div>
+
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-box-icon"><i class="fa-solid fa-tags"></i></div>
+                <h3 class="feature-box-title">52+ Movie Content Themes</h3>
+                <p class="feature-box-desc">Deep multi-select tag vectorization across commercial, artistic, regional, and global cinema genres.</p>
+            </div>
+
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-box-icon"><i class="fa-solid fa-coins"></i></div>
+                <h3 class="feature-box-title">Multi-Currency Budgets</h3>
+                <p class="feature-box-desc">Seamless budget selection in INR (₹ Crores/Lakhs), USD ($), EUR (€), and GBP (£) with USD scaling.</p>
+            </div>
+
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-box-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3 class="feature-box-title">0.9980 Accuracy Engine</h3>
+                <p class="feature-box-desc">Gradient Boosting Classifier trained on 4,800+ real-world films with zero data leakage.</p>
+            </div>
+        </section>
+
+        <!-- Metric Counter Bar -->
+        <section class="counters-grid">
+            <div class="counter-card" data-aos="flip-up" data-aos-delay="100">
+                <div class="counter-num">4,883+</div>
+                <div class="counter-lbl">Films Analyzed</div>
+            </div>
+            <div class="counter-card" data-aos="flip-up" data-aos-delay="200">
+                <div class="counter-num">99.80%</div>
+                <div class="counter-lbl">F1 Precision</div>
+            </div>
+            <div class="counter-card" data-aos="flip-up" data-aos-delay="300">
+                <div class="counter-num">52+</div>
+                <div class="counter-lbl">Content Themes</div>
+            </div>
+            <div class="counter-card" data-aos="flip-up" data-aos-delay="400">
+                <div class="counter-num">66</div>
+                <div class="counter-lbl">Feature Dimensions</div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="hero-card" style="margin-top: 3.5rem; padding: 4rem 2.5rem;" data-aos="zoom-in">
+            <h2 style="font-size: 2.6rem; font-weight: 900; margin-bottom: 1rem; color: var(--text-main);">Ready to Evaluate Your Film Proposal?</h2>
+            <p style="color: var(--text-secondary); max-width: 640px; margin: 0 auto 2.2rem auto; font-size: 1.1rem;">
+                Select your creative team, film specifications, budget, and content themes to receive instant AI rating predictions and commercial acquisition insights.
+            </p>
+            <a href="/app" class="btn-primary btn-hero">
+                <i class="fa-solid fa-play"></i> Start Film Evaluation Now
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 CineIntelligence™ — Enterprise Film Rating & Commercial Acquisition Platform.</p>
+    </footer>
+
+    <!-- Animation Libraries (AOS & GSAP) -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.scrollTo(0, 0);
+            AOS.init({ duration: 800, once: true, offset: 50, startEvent: 'DOMContentLoaded' });
+        });
+    </script>
+</body>
+</html>
