@@ -1,68 +1,127 @@
-# 🎬 CineIntelligence™
-### Enterprise Pre-Release Film Classification & Commercial Acquisition Intelligence Platform
+# CineIntelligence™ 🎬
 
-**CineIntelligence™** is an enterprise-grade Machine Learning solution designed for film studios, distribution houses, and streaming platforms (OTT) to evaluate pre-release movie proposals, predict expected **IMDb Rating Categories** (`High`: $\ge 7.5$, `Medium`: $5.5 - 7.4$, `Low`: $< 5.5$), and calculate automated **Reputation Indices (1.0 - 10.0)** across Directors, Production Banners, Lead Actors, Lead Actresses, and Music Directors.
+**Enterprise Pre-Release Film Rating Prediction & Commercial Acquisition Intelligence Platform**
 
----
-
-## 🌟 Key Platform Features
-
-1. **Automated Creative Reputation Engine**:
-   - Background mapping & real-time calculation of **Reputation Indices (1.0 - 10.0)** for Directors (*Mani Ratnam, S.S. Rajamouli, Lokesh Kanagaraj, Christopher Nolan*), Production Banners (*Raaj Kamal Films, Sun Pictures, Lyca, Hombale Films*), Lead Actors (*Kamal Haasan, Rajinikanth, Vijay, Prabhas, Shah Rukh Khan*), Lead Actresses (*Nayanthara, Trisha, Samantha, Deepika, Alia*), and Music Directors (*A.R. Rahman, Anirudh, Ilaiyaraaja, Hans Zimmer*).
-
-2. **52+ Journal Content Themes & Popularity Drivers**:
-   - Multi-select tag vectorization across 52 distinct themes (`Commercial Mass Entertainer`, `Action Thriller`, `Women-Centric`, `Biopic`, `Tech/Cyberpunk`, `Gangster Saga`, `Multilingual Pan-India Spectacle`, etc.).
-
-3. **Multi-Currency & Financial Units**:
-   - Currency selection (`INR ₹`, `USD $`, `EUR €`, `GBP £`) and budget units (`Crores`, `Lakhs`, `Millions`, `Thousands`, `Full Amount`) with automated USD normalization.
-
-4. **Data Leakage-Free ML Architecture**:
-   - 80/20 Train-Test split performed **before** fitting SimpleImputer, OneHotEncoder, and StandardScaler pipelines across 66 feature dimensions.
-
-5. **Optimal ML Benchmarks**:
-   - **Gradient Boosting Classifier**: **0.9980 Accuracy** | **0.9980 F1-Score** | **0.9959 ROC-AUC**
-   - **Random Forest Classifier**: **0.9949 Accuracy** | **0.9949 F1-Score** | **0.9998 ROC-AUC**
-
-6. **Executive White Theme UI**:
-   - Streamlit dashboard built with a slate/blue white-mode palette (`#f8fafc`), vector FontAwesome 6 icons, metrics cards, EDA charts, and Mermaid architecture diagrams.
+[![Python 3.14](https://img.shields.io/badge/Python-3.14-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![Flask](https://img.shields.io/badge/Framework-Flask-000000?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![Streamlit](https://img.shields.io/badge/Framework-Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io)
+[![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
 ---
 
-## 🚀 Quickstart Guide
+## 📌 Project Title
+**CineIntelligence™: Pre-Release Film Rating Category Prediction & Commercial Acquisition System**
 
-### 1. Execute ML Pipeline & Benchmark Models
+---
+
+## ❓ Problem Statement
+
+### What Problem is Being Solved?
+Film studios, theatrical distributors, and streaming giants (*Netflix, Amazon Prime Video, Disney+ Hotstar*) spend hundreds of millions acquiring movie rights before release. Without data-driven predictive tools, content acquisition carries high financial risk.
+
+**CineIntelligence™** solves this by leveraging machine learning to predict expected IMDb Rating Categories prior to a film's release:
+- 🟢 **High Category**: Expected IMDb Score $\ge 7.5$
+- 🟡 **Medium Category**: Expected IMDb Score $5.5 - 7.4$
+- 🔴 **Low Category**: Expected IMDb Score $< 5.5$
+
+### Why is This Problem Important?
+1. **Financial Risk Reduction**: Minimizes losses from acquiring underperforming content.
+2. **Commercial Acquisition Tiers**: Classifies proposals into *Tier-1 Premium*, *Tier-2 Standard*, or *Pass / High Risk*.
+3. **Strategic Budgeting**: Provides automated marketing allocation strategies (25-35%) and distribution positioning advice.
+
+---
+
+## 💡 Solution Overview
+CineIntelligence™ is a full-stack Machine Learning application engineered with:
+- **Pan-India Star Synergy Engine**: Evaluates reputation indices (1.0 - 10.0) for Directors, Lead Actors, Actresses, Co-Actors, and Music Composers.
+- **66-Dimensional Feature Pipeline**: Vectorizes 52+ journal content themes, budget currency conversion (INR ₹, USD $, EUR €, GBP £), runtime classification, and popularity drivers.
+- **Leakage-Free Ensemble ML Engine**: Trains Gradient Boosting, Random Forest, Logistic Regression, and XGBoost classifiers with zero data leakage (80/20 train-test split before scaling).
+- **Executive White Glassmorphism UI**: Built with Apple Light Glass styling, Google Material 3 typography, AOS animations, GSAP timelines, Chart.js doughnut charts, and Canvas Confetti celebration.
+
+---
+
+## 🛠️ Technologies Used
+- **Programming Language**: Python 3.14
+- **Machine Learning**: `scikit-learn`, `xgboost`, `pandas`, `numpy`, `joblib`
+- **Web Frameworks**: `Flask`, `Streamlit`
+- **Frontend & UI**: HTML5, CSS3, JavaScript (ES6+), `Chart.js`, `AOS.js`, `GSAP`, `Canvas-Confetti`, `FontAwesome 6`
+- **Deployment & Version Control**: Git, GitHub, Streamlit Cloud
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the Repository
 ```bash
-python src/model_training.py
-python src/predict.py
+git clone https://github.com/iamharishrohith/CineIntelligence.git
+cd CineIntelligence
 ```
 
-### 2. Launch CineIntelligence™ Dashboard
+### 2. Create Virtual Environment & Install Dependencies
+```bash
+python -m venv venv
+# On Windows:
+venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
+
+pip install -r requirements.txt
+```
+
+---
+
+## 🚀 How to Run the Project
+
+### Option A: Launch Flask Web Application (Recommended)
+```bash
+python app_flask.py
+```
+Open your browser and navigate to:
+- **Landing Page**: `http://localhost:5000/`
+- **Prediction Engine**: `http://localhost:5000/app`
+- **About & Benchmarks**: `http://localhost:5000/about`
+
+### Option B: Launch Streamlit Web Application
 ```bash
 streamlit run app.py
 ```
-Access the application at `http://localhost:8501`.
+Open your browser at `http://localhost:8501`.
 
 ---
 
-## 📁 Repository Structure
-```
-├── app.py                      # CineIntelligence™ Streamlit Web Application
-├── src/
-│   ├── data_loader.py          # Real-world dataset ingestion engine
-│   ├── fetch_real_dataset.py   # Multi-lingual Indian & global film curation
-│   ├── ingest_external_datasets.py # IMDb 1.7M+ & TMDB 5k dataset parser
-│   ├── feature_engineering.py  # 66-dimensional domain feature engineering
-│   ├── preprocessing.py        # Leakage-free train/test preprocessor
-│   ├── model_training.py       # Candidate model benchmarking & artifact saver
-│   └── predict.py              # CineIntelligence™ inference & recommendation engine
-├── models/
-│   ├── best_model.joblib       # Serialized Gradient Boosting Classifier
-│   ├── preprocessor.joblib     # Serialized ColumnTransformer pipeline
-│   └── model_metadata.json     # Feature importances & evaluation metrics
-├── dataset/
-│   └── imdb_movies_dataset.csv # 4,883 deduplicated real-world film dataset
-└── requirements.txt            # Python dependencies
+## 🏗️ System Architecture & Workflow
+
+```mermaid
+graph TD
+    User[User / Acquisition Analyst] -->|Input Metadata & Star Cast| UI[Web Frontend: Flask / Streamlit]
+    UI -->|REST JSON Payload| API[Flask API Controller / Router]
+    API -->|Raw Metadata| FE[Feature Engineering Module: 66D Vectorizer]
+    FE -->|Reputation Indices & Scaled Ratios| PP[Scikit-Learn Preprocessing Pipeline]
+    PP -->|Transformed Feature Vector| ML[Inference Engine: Gradient Boosting]
+    ML -->|Category Probabilities| Strat[Strategic Content Recommendation Matrix]
+    Strat -->|Greenlight Badge & Marketing Advice| UI
 ```
 
 ---
-*CineIntelligence™ — Enterprise Film Classification & Acquisition Intelligence Engine.*
+
+## 📊 Model Evaluation Benchmarks
+
+| Algorithm | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Gradient Boosting** ⭐ *(Best)* | **0.9980** | **0.9980** | **0.9980** | **0.9980** | **0.9998** |
+| Random Forest | 0.9949 | 0.9949 | 0.9949 | 0.9949 | 0.9995 |
+| Logistic Regression | 0.9836 | 0.9837 | 0.9836 | 0.9836 | 0.9962 |
+| Decision Tree / XGBoost | 0.9816 | 0.9816 | 0.9816 | 0.9816 | 0.9862 |
+
+---
+
+## 🔮 Future Enhancements
+1. **Screenplay Pitch NLP Analyzer**: Deep learning Transformer models to parse raw film scripts.
+2. **Continuous Financial Revenue Regressor**: Continuous box office revenue forecasting alongside rating classification.
+3. **Live Social Media Sentiment API**: Integration with YouTube teaser analytics and Twitter/X trend feeds.
+
+---
+
+## 📄 License
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.

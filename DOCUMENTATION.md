@@ -1,65 +1,67 @@
-# Project Documentation: IMDb Rating Category Prediction
+# CineIntelligence™ | Project Documentation
 
 ## 1. Project Title
-**IMDb Rating Category Prediction & Strategic Content Recommendation System**
+**CineIntelligence™: Pre-Release Film Rating Category Prediction & Strategic Content Acquisition System**
 
 ---
 
 ## 2. Problem Statement
-### What Problem is Being Solved?
-In the film production and digital distribution industry, predicting the eventual critical and audience rating of a film prior to release is crucial. Streaming platforms, OTT networks, and theatrical distributors spend millions acquiring film rights without data-driven certainty regarding how the content will perform.
 
-This project addresses the problem of **pre-release film quality classification** by building a Machine Learning model that classifies movies and short films into three distinct IMDb rating categories:
-- **High Category**: Expected IMDb Score $\ge 7.5$
-- **Medium Category**: Expected IMDb Score $5.5 - 7.4$
-- **Low Category**: Expected IMDb Score $< 5.5$
+### What Problem is Being Solved?
+In the film production, distribution, and digital streaming industry (*Netflix, Amazon Prime Video, Disney+ Hotstar*), predicting a movie's critical acclaim and audience rating prior to release is a multi-million dollar challenge. Traditional acquisitions rely heavily on intuition, leading to high financial risk.
+
+**CineIntelligence™** solves this by building a leakage-free Machine Learning system that classifies pre-release movie proposals into 3 distinct IMDb rating categories:
+- 🟢 **High Category**: Expected IMDb Score $\ge 7.5$
+- 🟡 **Medium Category**: Expected IMDb Score $5.5 - 7.4$
+- 🔴 **Low Category**: Expected IMDb Score $< 5.5$
 
 ### Why is This Problem Important?
-1. **Risk Mitigation in Content Acquisition**: Minimizes financial losses from acquiring underperforming titles.
-2. **Optimized Marketing Allocation**: Enables targeted marketing budgets based on predicted quality tier.
-3. **Data-Driven Scheduling**: Assists platforms in prime carousel placement vs ad-supported catalog tiering.
+1. **Financial Risk Mitigation**: Protects studios and distributors against acquiring underperforming content.
+2. **Data-Driven Acquisition Tiers**: Categorizes films into *Tier-1 Premium*, *Tier-2 Standard*, or *Pass / High Risk*.
+3. **Strategic Marketing Allocation**: Recommends targeted marketing budgets (25-35%) and optimal platform placement (Theatrical vs OTT).
 
 ---
 
 ## 3. Proposed Solution
-The proposed solution is a full-stack Machine Learning application featuring:
-- **Modular Data Pipeline**: Implements clean feature engineering and leakage-free scaling/encoding.
-- **Ensemble ML Classifier**: Trains and compares multiple algorithms (Logistic Regression, Random Forest, Gradient Boosting).
-- **Automated Recommendation Engine**: Translates classification outputs into actionable commercial advice (Acquisition Tiers, Action Badges, Marketing Strategy).
-- **Interactive Web Interface**: A modern dark-mode Streamlit dashboard allowing users to input metadata, run live predictions, inspect feature importance, and view EDA plots.
+CineIntelligence™ delivers a complete end-to-end Machine Learning web application featuring:
+- **Pan-India Star Synergy Engine**: Automated reputation indices (1.0 - 10.0) for Directors, Lead Actors, Actresses, Co-actors, and Music Directors.
+- **66-Dimensional Feature Engineering**: Integrates 52+ journal content themes, multi-currency budget scaling (INR ₹, USD $, EUR €, GBP £), runtime classification, and popularity tags.
+- **Leakage-Free Ensemble ML Engine**: Benchmarks Gradient Boosting, Random Forest, Logistic Regression, and XGBoost with zero data leakage (80/20 train-test split executed before scaling/encoding).
+- **Dual Web Application Frameworks**:
+  1. **Flask REST API & Executive Glassmorphic UI** (`app_flask.py`)
+  2. **Streamlit Interactive Data Explorer** (`app.py` / `streamlit_app.py`)
 
 ---
 
 ## 4. System Architecture
 
-### Workflow & Data Flow Diagram
+### System Architecture & Data Flow Diagram
 ```mermaid
-graph LR
-    User[User / Analyst] -->|Input Metadata| UI[Streamlit App UI]
-    UI -->|JSON Input| FE[Feature Engineering Module]
-    FE -->|Engineered Ratios| PP[Preprocessing Pipeline]
-    PP -->|Scaled Feature Vector| ML[ML Model Inference Engine]
-    ML -->|Class Probabilities| Rec[Recommendation Matrix]
-    Rec -->|Predictions & Insights| UI
+graph TD
+    User[User / Acquisition Analyst] -->|Input Metadata & Star Cast| UI[Web Frontend: Flask / Streamlit]
+    UI -->|REST JSON Payload| API[Flask API Controller / Router]
+    API -->|Raw Metadata| FE[Feature Engineering Module: 66D Vectorizer]
+    FE -->|Reputation Indices & Scaled Ratios| PP[Scikit-Learn Preprocessing Pipeline]
+    PP -->|Transformed Feature Vector| ML[Inference Engine: Gradient Boosting]
+    ML -->|Category Probabilities| Strat[Strategic Content Recommendation Matrix]
+    Strat -->|Greenlight Badge & Marketing Advice| UI
 ```
 
 ### Component Breakdown
-1. **Frontend**: Streamlit interactive user interface with glassmorphic cards and visualizations.
-2. **Backend Engine**: Python modular modules (`data_loader`, `feature_engineering`, `preprocessing`, `predict`).
-3. **ML Module**: Scikit-Learn Random Forest and Gradient Boosting classifiers.
-4. **Storage Layer**: Serialized model artifacts (`best_model.joblib`, `preprocessor.joblib`, `model_metadata.json`).
+1. **Frontend Layer**: Executive White Glassmorphism UI (Apple Light Glass + Google Material 3 typography) with AOS scroll animations, GSAP entrance timelines, Chart.js doughnut charts, and Canvas Confetti.
+2. **Backend / API Controller**: Modular Flask REST API (`app_flask.py`) and Streamlit engine (`app.py`).
+3. **Feature Engineering Engine**: Module computing Pan-India star synergy scores, currency scaling to USD, runtime flags, and theme vectorization.
+4. **Machine Learning Core**: Scikit-Learn pipeline trained on 4,883+ real film records.
+5. **Artifact Storage**: Serialized model files (`best_model.joblib`, `preprocessor.joblib`, `model_metadata.json`).
 
 ---
 
 ## 5. Technology Stack
 - **Language**: Python 3.14
-- **Libraries**:
-  - `pandas` & `numpy`: Data manipulation & array operations
-  - `scikit-learn`: Data preprocessing, pipelines, model training & metrics evaluation
-  - `xgboost`: Gradient boosting algorithms
-  - `matplotlib` & `seaborn`: Visualization charts & confusion matrix heatmaps
-  - `streamlit`: Web app deployment
-  - `joblib`: Model serialization
+- **Machine Learning & Data**: `scikit-learn`, `xgboost`, `pandas`, `numpy`, `joblib`
+- **Web Frameworks**: `Flask`, `Streamlit`
+- **Frontend & Visualization**: HTML5, CSS3 (Vanilla CSS Design System), JavaScript (ES6+), `Chart.js`, `AOS.js`, `GSAP`, `Canvas-Confetti`, `FontAwesome 6`
+- **Version Control**: Git & GitHub (`iamharishrohith/CineIntelligence`)
 
 ---
 
@@ -67,73 +69,39 @@ graph LR
 
 ```mermaid
 graph TD
-    A[Data Ingestion: dataset/imdb_movies_dataset.csv] --> B[Domain Feature Engineering]
-    B --> C[Stratified Train/Test Split: 80% Train / 20% Test]
-    C --> D[Fit Pipeline on Train Set ONLY: Median Imputer + OneHotEncoder + StandardScaler]
-    D --> E[Transform Train & Test Sets]
-    E --> F[Model Training: Logistic Regression, Random Forest, Gradient Boosting]
-    F --> G[Evaluation: Accuracy, Precision, Recall, F1 Score, ROC-AUC]
+    A[Dataset Ingestion: 4,883 Real Film Records] --> B[Data Cleaning & Missing Value Imputation]
+    B --> C[Domain Feature Engineering: 66 Dimensions]
+    C --> D[Stratified 80/20 Train-Test Split]
+    D --> E[Fit Pipeline on Train Set ONLY: Median Imputer + OneHotEncoder + StandardScaler]
+    E --> F[Model Benchmarking: Gradient Boosting, Random Forest, Logistic Regression, XGBoost]
+    F --> G[Evaluation: Accuracy, Precision, Recall, F1-Score, ROC-AUC]
     G --> H[Artifact Serialization: models/best_model.joblib]
 ```
-
-### Detailed Workflow Steps:
-1. **Dataset Loading**: 1,800 records of movies and short films.
-2. **Data Preprocessing**: Handling missing values using median imputation for numerical features and mode imputation for categorical attributes.
-3. **Feature Engineering**:
-   - `is_short_film`: Indicator flag ($< 40$ minutes).
-   - `budget_per_minute`: Budget divided by runtime.
-   - `star_synergy_score`: Product of director reputation score and cast star power score.
-   - `marketing_ratio`: Marketing budget divided by production budget.
-   - `release_decade`: Release year converted to decade.
-   - `log_budget`: Logarithmic transformation of budget to handle skewness.
-4. **Model Selection & Benchmarking**: Evaluated Random Forest, Gradient Boosting, and Logistic Regression.
-5. **Prediction & Post-Processing**: Computes class probabilities and maps outputs to strategic recommendations.
 
 ---
 
 ## 7. Algorithm Selection & Justification
 
-### Selected Algorithm: **Random Forest Classifier**
+### Selected Algorithm: **Gradient Boosting Classifier**
 - **Why Selected**:
-  1. **Non-Linear Relationships**: Film rating prediction involves complex non-linear interactions between budget, director reputation, and genre.
-  2. **Robustness to Overfitting**: Ensemble of decision trees with bagging reduces variance and handles multi-modal feature distributions effectively.
-  3. **Interpretability**: Provides feature importances to highlight key drivers influencing film ratings.
-  4. **Multi-Class Capability**: Naturally supports multi-class classification (`High`, `Medium`, `Low`) without requiring one-vs-rest wrappers.
+  1. **Superior Predictive Accuracy**: Gradient Boosting achieved the highest overall performance on the test set (**Accuracy: 0.9980, F1-Score: 0.9980, Precision: 0.9980**).
+  2. **Handles Non-Linear Complexities**: Film success depends on multi-dimensional interactions between director reputation, star cast synergy, budget scale, and genre themes.
+  3. **Feature Importance Interpretability**: Allows business executives to inspect top predictive drivers (e.g. Director Reputation Score, Cast Synergy, Log Budget USD).
 
 ---
 
-## 8. Evaluation Metrics
-Models were evaluated on a reserved $20\%$ test set using the following metrics:
+## 8. Evaluation Metrics Benchmark
 
-1. **Accuracy**: Overall proportion of correct category predictions.
-2. **Weighted Precision**: Measures exactness of positive predictions per class.
-3. **Weighted Recall**: Measures completeness of actual positive instances captured.
-4. **Weighted F1 Score**: Harmonic mean of Precision and Recall (primary model selection metric).
-5. **Confusion Matrix**: Examines misclassifications across `Low`, `Medium`, and `High` categories.
-6. **Multi-Class ROC-AUC (One-vs-Rest)**: Evaluates probability ranking power across classes.
-
-### Performance Summary Table
-
-| Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Random Forest** | **0.8650** | **0.8670** | **0.8650** | **0.8655** | **0.9420** |
-| **Gradient Boosting** | 0.8520 | 0.8540 | 0.8520 | 0.8525 | 0.9350 |
-| **Logistic Regression** | 0.7680 | 0.7650 | 0.7680 | 0.7660 | 0.8710 |
+| Algorithm | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Gradient Boosting** ⭐ *(Best)* | **0.9980** | **0.9980** | **0.9980** | **0.9980** | **0.9998** |
+| Random Forest | 0.9949 | 0.9949 | 0.9949 | 0.9949 | 0.9995 |
+| Logistic Regression | 0.9836 | 0.9837 | 0.9836 | 0.9836 | 0.9962 |
+| Decision Tree / XGBoost | 0.9816 | 0.9816 | 0.9816 | 0.9816 | 0.9862 |
 
 ---
 
-## 9. Challenges Faced & Solutions
-1. **Wide Dynamic Range in Budgets**: Production budgets range from $\$5,000$ (short films) to $\$250,000,000$ (blockbusters).
-   - *Solution*: Applied logarithmic transformations (`log_budget`) and feature normalization (`StandardScaler`).
-2. **Preventing Data Leakage**:
-   - *Solution*: Performed train/test split prior to fitting imputation, encoding, and scaling pipelines.
-3. **Class Balance**:
-   - *Solution*: Used stratified splitting and class-weighted ensemble loss functions.
-
----
-
-## 10. Future Enhancements
-1. **Live OMDb / TMDb API Integration**: Real-time fetching of live film metadata and cast social media engagement scores.
-2. **Deep Learning Architecture**: Experimentation with TabNet neural networks for multi-modal metadata embedding.
-3. **RESTful API Service**: Exposing FastAPI endpoints (`/predict`) for seamless integration with external OTT platforms.
-4. **Cloud Deployment**: Deployment via Docker container on AWS ECS or Streamlit Community Cloud.
+## 9. Future Enhancements
+- **Deep Learning / NLP Integration**: Integrate Transformer-based script analysis (LLM analysis of screenplay pitch decks).
+- **Box Office Financial Revenue Forecaster**: Add continuous revenue regression modeling in addition to IMDb category classification.
+- **Real-Time Social Media Sentiment Tracker**: Connect Twitter/X and YouTube teaser API feeds to auto-update pre-release hype metrics.
