@@ -3,8 +3,5 @@ dataset/
 streamlit_app.py
 app.py
 *.md
-*.jpg
-*.png
-assets/
 .git/
 .streamlit/
