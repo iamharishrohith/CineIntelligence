@@ -10,12 +10,9 @@
 
 ---
 
-## 📌 Project Title
-**CineIntelligence™: Pre-Release Film Rating Category Prediction & Commercial Acquisition System**
+## 📌 Problem Statement Visual Overview
 
----
-
-## ❓ Problem Statement
+![Film Industry Problem Statement](assets/problem_statement.jpg)
 
 ### What Problem is Being Solved?
 Film studios, theatrical distributors, and streaming giants (*Netflix, Amazon Prime Video, Disney+ Hotstar*) spend hundreds of millions acquiring movie rights before release. Without data-driven predictive tools, content acquisition carries high financial risk.
@@ -25,72 +22,21 @@ Film studios, theatrical distributors, and streaming giants (*Netflix, Amazon Pr
 - 🟡 **Medium Category**: Expected IMDb Score $5.5 - 7.4$
 - 🔴 **Low Category**: Expected IMDb Score $< 5.5$
 
-### Why is This Problem Important?
-1. **Financial Risk Reduction**: Minimizes losses from acquiring underperforming content.
-2. **Commercial Acquisition Tiers**: Classifies proposals into *Tier-1 Premium*, *Tier-2 Standard*, or *Pass / High Risk*.
-3. **Strategic Budgeting**: Provides automated marketing allocation strategies (25-35%) and distribution positioning advice.
-
 ---
 
-## 💡 Solution Overview
-CineIntelligence™ is a full-stack Machine Learning application engineered with:
+## 💡 Proposed Solution & Key Innovations
+
+![Solution & Innovations Visual](assets/solution_innovation.jpg)
+
 - **Pan-India Star Synergy Engine**: Evaluates reputation indices (1.0 - 10.0) for Directors, Lead Actors, Actresses, Co-Actors, and Music Composers.
 - **66-Dimensional Feature Pipeline**: Vectorizes 52+ journal content themes, budget currency conversion (INR ₹, USD $, EUR €, GBP £), runtime classification, and popularity drivers.
-- **Leakage-Free Ensemble ML Engine**: Trains Gradient Boosting, Random Forest, Logistic Regression, and XGBoost classifiers with zero data leakage (80/20 train-test split before scaling).
-- **Executive White Glassmorphism UI**: Built with Apple Light Glass styling, Google Material 3 typography, AOS animations, GSAP timelines, Chart.js doughnut charts, and Canvas Confetti celebration.
+- **Leakage-Free Ensemble ML Engine**: Trains Gradient Boosting, Random Forest, Logistic Regression, and XGBoost classifiers with zero data leakage.
 
 ---
 
-## 🛠️ Technologies Used
-- **Programming Language**: Python 3.14
-- **Machine Learning**: `scikit-learn`, `xgboost`, `pandas`, `numpy`, `joblib`
-- **Web Frameworks**: `Flask`, `Streamlit`
-- **Frontend & UI**: HTML5, CSS3, JavaScript (ES6+), `Chart.js`, `AOS.js`, `GSAP`, `Canvas-Confetti`, `FontAwesome 6`
-- **Deployment & Version Control**: Git, GitHub, Streamlit Cloud
+## 🏗️ End-to-End System Architecture & Data Flow
 
----
-
-## ⚙️ Installation & Setup
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/iamharishrohith/CineIntelligence.git
-cd CineIntelligence
-```
-
-### 2. Create Virtual Environment & Install Dependencies
-```bash
-python -m venv venv
-# On Windows:
-venv\Scripts\activate
-# On Mac/Linux:
-source venv/bin/activate
-
-pip install -r requirements.txt
-```
-
----
-
-## 🚀 How to Run the Project
-
-### Option A: Launch Flask Web Application (Recommended)
-```bash
-python app_flask.py
-```
-Open your browser and navigate to:
-- **Landing Page**: `http://localhost:5000/`
-- **Prediction Engine**: `http://localhost:5000/app`
-- **About & Benchmarks**: `http://localhost:5000/about`
-
-### Option B: Launch Streamlit Web Application
-```bash
-streamlit run app.py
-```
-Open your browser at `http://localhost:8501`.
-
----
-
-## 🏗️ System Architecture & Workflow
+![Data Flow & System Architecture Diagram](assets/flow_diagram.jpg)
 
 ```mermaid
 graph TD
@@ -116,10 +62,22 @@ graph TD
 
 ---
 
-## 🔮 Future Enhancements
-1. **Screenplay Pitch NLP Analyzer**: Deep learning Transformer models to parse raw film scripts.
-2. **Continuous Financial Revenue Regressor**: Continuous box office revenue forecasting alongside rating classification.
-3. **Live Social Media Sentiment API**: Integration with YouTube teaser analytics and Twitter/X trend feeds.
+## 🚀 How to Run the Project
+
+### Option A: Launch Flask Web Application (Recommended)
+```bash
+python app_flask.py
+```
+Open your browser and navigate to:
+- **Landing Page**: `http://localhost:5000/`
+- **Prediction Engine**: `http://localhost:5000/app`
+- **About & Benchmarks**: `http://localhost:5000/about`
+
+### Option B: Launch Streamlit Web Application
+```bash
+streamlit run app.py
+```
+Open your browser at `http://localhost:8501`.
 
 ---
 
