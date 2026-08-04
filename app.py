@@ -17,9 +17,15 @@ LOGO_PATH = os.path.join(BASE_DIR, 'assets', 'logo.jpg')
 
 if SRC_DIR not in sys.path:
     sys.path.insert(0, SRC_DIR)
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
 
-from predict import IMDbRatingPredictor
-from data_loader import load_imdb_dataset
+try:
+    from predict import IMDbRatingPredictor
+    from data_loader import load_data
+except ImportError:
+    from src.predict import IMDbRatingPredictor
+    from src.data_loader import load_data
 
 # Page Configuration
 st.set_page_config(
@@ -454,10 +460,13 @@ with tab_about:
     st.markdown("---")
     st.markdown("## 🔍 Dataset Explorer (EDA Inspector)")
     
-    df_data = load_imdb_dataset(DATASET_PATH)
-    if df_data is not None:
-        st.write(f"Displaying top 15 records from {len(df_data):,} total real-world film dataset:")
-        st.dataframe(df_data.head(15), use_container_width=True)
+    try:
+        df_data = load_data(DATASET_PATH)
+        if df_data is not None:
+            st.write(f"Displaying top 15 records from {len(df_data):,} total real-world film dataset:")
+            st.dataframe(df_data.head(15), use_container_width=True)
+    except Exception as e:
+        st.warning(f"Dataset preview info: {e}")
 
     st.markdown("---")
     st.markdown("## 🏗️ Technical System Architecture")

@@ -16,6 +16,9 @@ def load_data(filepath=None):
     df = pd.read_csv(filepath)
     return df
 
+# Alias helper function for backwards compatibility
+load_imdb_dataset = load_data
+
 def inspect_data(df):
     """
     Returns diagnostic summary statistics of the dataset.
