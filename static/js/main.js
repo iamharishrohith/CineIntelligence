@@ -167,6 +167,78 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Helper Function: Load High / Medium / Low Test Presets
+function loadTestPreset(presetType) {
+    // Uncheck all checkboxes first
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+
+    if (presetType === 'high') {
+        document.getElementById('title').value = "Vikram 2: The Syndicate";
+        document.getElementById('primary_genre').value = "Action";
+        document.getElementById('language').value = "Tamil";
+        document.getElementById('runtime_minutes').value = 165;
+        document.getElementById('director_name').value = "Lokesh Kanagaraj";
+        document.getElementById('production_house').value = "Raaj Kamal Films International";
+        document.getElementById('lead_actor').value = "Kamal Haasan";
+        document.getElementById('lead_actress').value = "Trisha Krishnan";
+        document.getElementById('music_director').value = "Anirudh Ravichander";
+        document.getElementById('currency').value = "INR (₹)";
+        document.getElementById('budget_unit').value = "Crores";
+        document.getElementById('production_budget_val').value = 180;
+        document.getElementById('marketing_budget_val').value = 35;
+        document.getElementById('sentiment').value = "Dramatic / Intense";
+
+        checkValues('content_themes', ['Action Thriller', 'Commercial Mass Entertainer', 'Gangster & Underworld Saga', 'Multilingual Pan-India Spectacle']);
+        checkValues('popularity_tags', ['A-List Lead Actor Star Power', 'Hit Music / Soundtrack', 'Pan-India Release Franchise', 'Director Cult Following']);
+
+    } else if (presetType === 'medium') {
+        document.getElementById('title').value = "Chai & Conversations";
+        document.getElementById('primary_genre').value = "Drama";
+        document.getElementById('language').value = "Hindi";
+        document.getElementById('runtime_minutes').value = 120;
+        document.getElementById('director_name').value = "Other / Custom Entry";
+        document.getElementById('production_house').value = "Other / Custom Entry";
+        document.getElementById('lead_actor').value = "Ayushmann Khurrana";
+        document.getElementById('lead_actress').value = "Wamiqa Gabbi";
+        document.getElementById('music_director').value = "Amit Trivedi";
+        document.getElementById('currency').value = "INR (₹)";
+        document.getElementById('budget_unit').value = "Crores";
+        document.getElementById('production_budget_val').value = 12;
+        document.getElementById('marketing_budget_val').value = 2.5;
+        document.getElementById('sentiment').value = "Emotional / Heartwarming";
+
+        checkValues('content_themes', ['Family Drama & Relations', 'Romantic Comedy (Rom-Com)', 'Small Town & Rural Realism']);
+        checkValues('popularity_tags', ['Hit Music / Soundtrack']);
+
+    } else if (presetType === 'low') {
+        document.getElementById('title').value = "B-Grade Night Monster";
+        document.getElementById('primary_genre').value = "Horror";
+        document.getElementById('language').value = "English";
+        document.getElementById('runtime_minutes').value = 75;
+        document.getElementById('director_name').value = "Other / Custom Entry";
+        document.getElementById('production_house').value = "Other / Custom Entry";
+        document.getElementById('lead_actor').value = "Other / Custom Entry";
+        document.getElementById('lead_actress').value = "Other / Custom Entry";
+        document.getElementById('music_director').value = "Other / Custom Entry";
+        document.getElementById('currency').value = "INR (₹)";
+        document.getElementById('budget_unit').value = "Lakhs";
+        document.getElementById('production_budget_val').value = 35;
+        document.getElementById('marketing_budget_val').value = 3;
+        document.getElementById('sentiment').value = "Dark / Gritty";
+
+        checkValues('content_themes', ['Slasher & Gore Horror', 'Zombie & Monster Creature']);
+        checkValues('popularity_tags', []);
+    }
+}
+
+function checkValues(name, list) {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(cb => {
+        if (list.includes(cb.value)) {
+            cb.checked = true;
+        }
+    });
+}
+
 // Helper Function: Chart.js Doughnut Chart Renderer
 function renderProbabilityChart(probData) {
     const ctx = document.getElementById('probChart');

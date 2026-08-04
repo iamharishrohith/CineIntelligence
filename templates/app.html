@@ -38,9 +38,24 @@
     <main class="app-container">
         <!-- Input Specification Form Card -->
         <section class="form-card" data-aos="fade-up">
-            <div style="margin-bottom: 2rem;">
-                <h2 style="font-size: 2.2rem; font-weight: 900; color: var(--text-main); font-family: 'Outfit';"><i class="fa-solid fa-sliders" style="color: var(--brand-blue);"></i> Film Specifications & Creative Team</h2>
-                <p style="color: var(--text-secondary); font-size: 1rem;">Provide film metadata, select Pan-India star cast, currency, and multi-select content themes.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 2rem;">
+                <div>
+                    <h2 style="font-size: 2.2rem; font-weight: 900; color: var(--text-main); font-family: 'Outfit';"><i class="fa-solid fa-sliders" style="color: var(--brand-blue);"></i> Film Specifications & Creative Team</h2>
+                    <p style="color: var(--text-secondary); font-size: 1rem;">Provide film metadata, select Pan-India star cast, currency, and multi-select content themes.</p>
+                </div>
+
+                <!-- Instant Test Preset Loader Buttons -->
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button type="button" onclick="loadTestPreset('high')" class="btn-primary" style="background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); padding: 0.5rem 1rem; font-size: 0.85rem;">
+                        <i class="fa-solid fa-fire"></i> High Test
+                    </button>
+                    <button type="button" onclick="loadTestPreset('medium')" class="btn-primary" style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); padding: 0.5rem 1rem; font-size: 0.85rem;">
+                        <i class="fa-solid fa-bolt"></i> Medium Test
+                    </button>
+                    <button type="button" onclick="loadTestPreset('low')" class="btn-primary" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); padding: 0.5rem 1rem; font-size: 0.85rem;">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Low Test
+                    </button>
+                </div>
             </div>
 
             <form id="prediction-form">
