@@ -151,7 +151,7 @@ h1, h2, h3, h4, .font-heading {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    min-height: 44px; /* Touch friendly minimum height */
+    min-height: 44px;
 }
 
 .btn-primary:hover {
@@ -232,6 +232,7 @@ h1, h2, h3, h4, .font-heading {
     padding: 2.2rem;
     box-shadow: var(--box-shadow-light);
     transition: all 0.25s ease;
+    min-width: 0; /* Prevents flex/grid overflow */
 }
 
 .feature-box:hover {
@@ -284,6 +285,7 @@ h1, h2, h3, h4, .font-heading {
     padding: 1.8rem;
     text-align: center;
     box-shadow: var(--box-shadow-light);
+    min-width: 0;
 }
 
 .counter-num {
@@ -316,19 +318,25 @@ h1, h2, h3, h4, .font-heading {
     padding: 2.5rem;
     box-shadow: var(--box-shadow-light);
     margin-bottom: 2.5rem;
+    overflow: hidden;
 }
 
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 28px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.form-grid > div {
+    min-width: 0; /* Critical: prevents child inputs from overflowing 3-column layout */
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.2rem;
+    min-width: 0;
 }
 
 .form-label {
@@ -337,17 +345,21 @@ h1, h2, h3, h4, .font-heading {
     color: var(--text-main);
 }
 
+/* Strict Box Sizing & Width Fix to prevent input overflow */
 .form-control, .form-select {
-    padding: 0.75rem 1.1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0.65rem 0.85rem;
     border-radius: 10px;
     border: 1px solid #cbd5e1;
     background: #f8fafc;
     color: var(--text-main);
-    font-size: 16px; /* 16px prevents iOS Safari auto-zoom */
+    font-size: 15px;
     font-family: 'Plus Jakarta Sans', sans-serif;
     outline: none;
     transition: all 0.2s ease;
-    min-height: 46px; /* Touch target size */
+    min-height: 44px;
 }
 
 .form-control:focus, .form-select:focus {
@@ -364,7 +376,7 @@ h1, h2, h3, h4, .font-heading {
 /* Multi-select check grid chips */
 .tags-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 10px;
     max-height: 240px;
     overflow-y: auto;
@@ -386,7 +398,8 @@ h1, h2, h3, h4, .font-heading {
     padding: 8px 10px;
     border-radius: 8px;
     transition: background 0.2s ease;
-    min-height: 40px; /* Touch target */
+    min-height: 40px;
+    min-width: 0;
 }
 
 .checkbox-label:hover {
@@ -398,6 +411,7 @@ h1, h2, h3, h4, .font-heading {
     accent-color: var(--brand-blue);
     width: 18px;
     height: 18px;
+    flex-shrink: 0;
 }
 
 /* Results Display Cards */
@@ -417,6 +431,7 @@ h1, h2, h3, h4, .font-heading {
     padding: 2.5rem;
     border: 1.5px solid transparent;
     box-shadow: var(--box-shadow-light);
+    min-width: 0;
 }
 
 .result-card.high {
@@ -453,7 +468,7 @@ h1, h2, h3, h4, .font-heading {
 /* Reputation Index Grid Pills */
 .metrics-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     gap: 12px;
     margin-top: 1.4rem;
 }
@@ -462,14 +477,15 @@ h1, h2, h3, h4, .font-heading {
     background: #ffffff;
     border: 1px solid var(--card-border);
     border-radius: var(--radius-md);
-    padding: 14px;
+    padding: 12px 8px;
     text-align: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    min-width: 0;
 }
 
 .metric-pill-val {
     font-weight: 900;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-family: 'Outfit', sans-serif;
     color: var(--brand-blue);
 }
@@ -493,11 +509,7 @@ h1, h2, h3, h4, .font-heading {
     background: #ffffff;
 }
 
-/* =========================================================
-   COMPREHENSIVE MOBILE UI/UX ALIGNMENT & DESIGN RECONSTRUCTION
-   ========================================================= */
-
-/* Tablet Screens (≤ 992px) */
+/* Responsive Media Queries */
 @media (max-width: 992px) {
     .navbar {
         padding: 0.9rem 2rem;
@@ -510,7 +522,6 @@ h1, h2, h3, h4, .font-heading {
     }
 }
 
-/* Mobile Screens (≤ 768px) */
 @media (max-width: 768px) {
     .navbar {
         padding: 0.8rem 1rem;
@@ -652,7 +663,6 @@ h1, h2, h3, h4, .font-heading {
     }
 }
 
-/* Small Mobile Phones (≤ 480px) */
 @media (max-width: 480px) {
     .hero-title {
         font-size: 1.85rem;
