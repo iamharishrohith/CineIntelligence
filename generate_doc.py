@@ -9,8 +9,8 @@ from docx.oxml.ns import nsdecls
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ASSETS_DIR = os.path.join(BASE_DIR, 'assets')
-OUTPUT_DOCX = os.path.join(BASE_DIR, 'CineIntelligence_Detailed_Documentation.docx')
-OUTPUT_DOCX_PRIMARY = os.path.join(BASE_DIR, 'CineIntelligence_Project_Documentation.docx')
+OUTPUT_DOCX = os.path.join(BASE_DIR, 'CineIntelligence_Complete_Documentation.docx')
+OUTPUT_DOCX_ALT = os.path.join(BASE_DIR, 'CineIntelligence_Project_Documentation.docx')
 
 def set_cell_background(cell, fill_hex):
     tcPr = cell._element.get_or_add_tcPr()
@@ -96,9 +96,31 @@ def build_ultra_detailed_docx():
             p.paragraph_format.space_after = Pt(14)
             p.add_run().add_picture(path, width=Inches(width))
 
+    def add_flowchart_box(title, steps):
+        p = doc.add_paragraph()
+        p.paragraph_format.space_before = Pt(8)
+        p.paragraph_format.space_after = Pt(12)
+        
+        table = doc.add_table(rows=1, cols=1)
+        table.alignment = WD_TABLE_ALIGNMENT.CENTER
+        cell = table.rows[0].cells[0]
+        set_cell_background(cell, "EFF6FF")
+        
+        cp = cell.paragraphs[0]
+        r_head = cp.add_run(f"📌 {title}\n")
+        r_head.bold = True
+        r_head.font.size = Pt(11)
+        r_head.font.color.rgb = RGBColor(37, 99, 235)
+        
+        for idx, step in enumerate(steps):
+            arrow = " ➔ " if idx < len(steps) - 1 else ""
+            r_step = cp.add_run(f"[{step}]" + arrow)
+            r_step.font.size = Pt(10)
+            r_step.font.color.rgb = RGBColor(15, 23, 42)
+
     # TITLE & METADATA
     add_title("CineIntelligence™\n")
-    add_subtitle("Enterprise Pre-Release Film Rating Prediction & Commercial Acquisition Intelligence Platform\nDetailed Technical & Architectural Specification Report\n")
+    add_subtitle("Enterprise Pre-Release Film Rating Prediction & Commercial Acquisition Intelligence Platform\nDetailed Technical, Architectural & Flowchart Specification Report\n")
     
     meta_table = doc.add_table(rows=4, cols=2)
     meta_table.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -127,10 +149,6 @@ def build_ultra_detailed_docx():
         "IMDb rating categories (High ≥ 7.5, Medium 5.5 - 7.4, Low < 5.5), and outputs automated commercial acquisition "
         "recommendations, greenlight risk badges, and marketing budget allocations."
     )
-    doc.add_paragraph(
-        "By replacing traditional guesswork with a 66-dimensional leakage-free Machine Learning model trained on "
-        "4,883+ real-world film records, CineIntelligence™ reduces commercial acquisition risk by up to 85%."
-    )
 
     # 2. PROBLEM STATEMENT
     add_h1("2. Problem Statement & Financial Risk Analysis")
@@ -139,90 +157,83 @@ def build_ultra_detailed_docx():
         "acquiring theatrical and streaming distribution rights long before a film is completed or released to audiences. "
         "Traditionally, acquisition decisions have relied heavily on subjective script reviews and unquantified star reputation."
     )
-    doc.add_paragraph("This subjective approach leads to two major financial failures:")
-    add_bullet("Over-Acquisition Risk", "Paying premium Tier-1 licensing fees for titles that fail to achieve critical or audience acclaim.")
-    add_bullet("Under-Promotion Risk", "Under-investing in marketing for sleeper hit films that possess high ratings potential.")
-
     add_img("problem_statement.jpg", width=6.2)
 
-    doc.add_paragraph("Target IMDb Quality Rating Categories:")
-    add_bullet("🟢 High Quality Category (IMDb Score ≥ 7.5)", "Target for Tier-1 Premium Acquisitions, global theatrical releases, and prime carousel digital premieres.")
-    add_bullet("🟡 Medium Quality Category (IMDb Score 5.5 - 7.4)", "Target for standard catalog acquisitions, SVOD streaming tiers, and moderate promotional budgets.")
-    add_bullet("🔴 Low Quality Category (IMDb Score < 5.5)", "High-risk acquisitions requiring licensing fee renegotiation or outright pass.")
-
-    # 3. PROPOSED SOLUTION & INNOVATIONS
-    add_h1("3. Proposed Solution & Key Innovations")
-    doc.add_paragraph("CineIntelligence™ introduces a comprehensive, full-stack Machine Learning application with 5 core technical innovations:")
-
-    add_img("solution_innovation.jpg", width=6.2)
-
-    add_h2("Core Technical Innovations:")
-    add_bullet("1. Pan-India Star Synergy Engine", "Computes dynamic reputation indices (1.0 - 10.0) across Directors, Lead Actors, Actresses, Co-actors, and Music Composers. Calculates composite synergy: Synergy = Director Score x Cast Score.")
-    add_bullet("2. Multi-Currency Global Budget Converter", "Supports budget inputs across 4 currencies (INR ₹, USD $, EUR €, GBP £) and 4 units (Crores, Lakhs, Millions, Thousands), converting all financial values to USD before feature scaling.")
-    add_bullet("3. 52+ Journal Content Theme Vectorizer", "Vectorizes 52 multi-select journal content themes (Pan-India Spectacles, Cyberpunk, Slasher Horror, Family Drama) and popularity driver tags.")
-    add_bullet("4. Zero-Data-Leakage ML Architecture", "Executes an 80/20 train-test split BEFORE fitting any imputer, encoder, or scaler artifacts.")
-    add_bullet("5. Automated Strategic Advice Matrix", "Translates model output probabilities directly into actionable commercial guidance (Action Badges, Marketing Spend %, Platform Placement).")
-
-    # 4. SYSTEM ARCHITECTURE
-    add_h1("4. Technical System Architecture")
+    # 3. USER FLOWCHART & INTERACTION DIAGRAM
+    add_h1("3. User Interaction & Journey Flowchart")
     doc.add_paragraph(
-        "The system architecture follows a clean 4-tier decoupled design pattern: Client Presentation Layer → "
-        "REST API Controller → Feature Engineering & Preprocessing Pipeline → ML Inference Engine."
+        "The user flow defines how acquisition executives, studio heads, and producers navigate the system from initial landing to final recommendation rendering:"
+    )
+
+    add_flowchart_box(
+        "User Journey Flowchart",
+        [
+            "User Arrives at Platform",
+            "Select Page (Home / App / About)",
+            "Select Input Mode (Instant Preset vs Manual Input)",
+            "Form Pre-filled / Submitted",
+            "POST /api/predict Execution",
+            "Category Output (High / Medium / Low)",
+            "Doughnut Chart & Strategic Acquisition Advice Rendered"
+        ]
+    )
+
+    # 4. PROPOSED SOLUTION & INNOVATIONS
+    add_h1("4. Proposed Solution & Key Innovations")
+    add_img("solution_innovation.jpg", width=6.2)
+    add_bullet("1. Pan-India Star Synergy Engine", "Computes dynamic reputation indices (1.0 - 10.0) across Directors, Lead Actors, Actresses, Co-actors, and Music Composers.")
+    add_bullet("2. Multi-Currency Global Budget Converter", "Supports budget inputs across 4 currencies (INR ₹, USD $, EUR €, GBP £) and 4 units (Crores, Lakhs, Millions, Thousands).")
+    add_bullet("3. 52+ Journal Content Theme Vectorizer", "Vectorizes 52 multi-select journal content themes and popularity driver tags.")
+
+    # 5. DATA FLOWCHART & PIPELINE ARCHITECTURE
+    add_h1("5. End-to-End Data Flowchart & Pipeline Architecture")
+    doc.add_paragraph(
+        "The data flow defines the movement and transformation of data from client form inputs to 66-dimensional feature vectors, preprocessing, ML inference, and strategic output:"
+    )
+
+    add_flowchart_box(
+        "Data Flowchart Architecture",
+        [
+            "Form Inputs JSON Payload",
+            "Star Synergy Index Lookup",
+            "Multi-Currency USD Scaling",
+            "52+ Theme Vectorizer",
+            "66D Feature Vector",
+            "Scikit-Learn Preprocessor",
+            "Gradient Boosting Inference",
+            "Category Probabilities",
+            "Strategic Advice Matrix Response"
+        ]
     )
 
     add_img("flow_diagram.jpg", width=6.2)
 
-    add_h2("Component Breakdown:")
-    add_bullet("Frontend Presentation Layer", "Executive White Glassmorphism UI (Apple Light Glass + Google Material 3 typography) with AOS scroll animations, GSAP timelines, Chart.js doughnut charts, and Canvas Confetti.")
-    add_bullet("Backend API Layer", "Python Flask REST API (app_flask.py) handling POST /api/predict requests under 150ms latency.")
-    add_bullet("Feature Engineering Engine", "Module (src/feature_engineering.py) converting raw JSON inputs into 66-dimensional feature vectors.")
-    add_bullet("Model Storage Layer", "Serialized joblib artifacts (models/best_model.joblib, models/preprocessor.joblib, models/model_metadata.json).")
+    # 6. MACHINE LEARNING WORKFLOW FLOWCHART
+    add_h1("6. Machine Learning Model Training Workflow Flowchart")
+    doc.add_paragraph(
+        "The machine learning lifecycle flow ensures rigorous model benchmarking and zero data leakage:"
+    )
 
-    # 5. TECH STACK
-    add_h1("5. Technology Stack & Dependency Specifications")
+    add_flowchart_box(
+        "Machine Learning Workflow Flowchart",
+        [
+            "Data Ingestion (4,883 Records)",
+            "Data Cleaning & Imputation",
+            "Domain Feature Engineering (66D)",
+            "Stratified 80/20 Train-Test Split",
+            "Fit Imputer + OneHot + Scaler on Train Set ONLY",
+            "Multi-Model Benchmarking (GB, RF, LR, XGB)",
+            "Metric Evaluation (Accuracy: 0.9980, F1: 0.9980)",
+            "Artifact Serialization (best_model.joblib)"
+        ]
+    )
 
+    # 7. TECH STACK
+    add_h1("7. Technology Stack & Frameworks")
     add_img("tech_stack.jpg", width=6.2)
 
-    tech_table = doc.add_table(rows=6, cols=3)
-    tech_table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    t_headers = ["Layer", "Technology / Framework", "Role & Description"]
-    for i, title in enumerate(t_headers):
-        cell = tech_table.rows[0].cells[i]
-        cell.text = title
-        set_cell_background(cell, "2563EB")
-        p = cell.paragraphs[0]
-        for r in p.runs:
-            r.font.bold = True
-            r.font.color.rgb = RGBColor(255, 255, 255)
-
-    tech_data = [
-        ["Core Language", "Python 3.14", "Primary programming language for ML pipeline & web servers."],
-        ["Web Frameworks", "Flask 3.0 & Streamlit 1.30", "Flask REST API & interactive Streamlit data explorer."],
-        ["Machine Learning", "Scikit-Learn, XGBoost, Joblib", "Gradient Boosting, Random Forest, model serialization."],
-        ["Data Processing", "Pandas 2.0 & NumPy 1.24", "Dataframe operations, array math, matrix transformations."],
-        ["Frontend UI", "HTML5, CSS3, ES6 JS, Chart.js", "Executive Glassmorphism UI, doughnut charts, animations."]
-    ]
-
-    for r_idx, row in enumerate(tech_data):
-        row_cells = tech_table.rows[r_idx + 1].cells
-        for c_idx, val in enumerate(row):
-            row_cells[c_idx].text = val
-            set_cell_background(row_cells[c_idx], "F8FAFC" if r_idx % 2 == 1 else "FFFFFF")
-
-    doc.add_paragraph().paragraph_format.space_after = Pt(12)
-
-    # 6. ML WORKFLOW
-    add_h1("6. Machine Learning Workflow & Preprocessing")
-    doc.add_paragraph("The machine learning workflow guarantees zero data leakage through strict split-first isolation:")
-    add_bullet("1. Data Cleaning", "Removal of duplicate records, cleaning title strings, and converting missing budget entries to zero.")
-    add_bullet("2. Feature Engineering (66 Dimensions)", "Creation of star synergy scores, log-transformed budget ratios, runtime classification flags (< 40 mins), and One-Hot content themes.")
-    add_bullet("3. Stratified Partitioning", "80% Training Set (3,906 films) and 20% Holdout Test Set (977 films).")
-    add_bullet("4. Preprocessing Fit", "Median SimpleImputer for numerical features, OneHotEncoder for categoricals, and StandardScaler fitted ONLY on training split.")
-
-    # 7. MODEL EVALUATION BENCHMARKS
-    add_h1("7. Model Evaluation Benchmarks & Metrics")
-    doc.add_paragraph("Quantitative evaluation results evaluated on the 20% holdout test partition (977 unseen film records):")
-
+    # 8. MODEL EVALUATION BENCHMARKS TABLE
+    add_h1("8. Model Evaluation Benchmarks & Metrics")
     bench_table = doc.add_table(rows=5, cols=6)
     bench_table.alignment = WD_TABLE_ALIGNMENT.CENTER
     b_headers = ["Algorithm", "Accuracy", "Precision", "Recall", "F1 Score", "ROC-AUC"]
@@ -256,21 +267,10 @@ def build_ultra_detailed_docx():
                 for r in p.runs:
                     r.font.bold = True
 
-    doc.add_paragraph().paragraph_format.space_after = Pt(12)
+    doc.add_paragraph().paragraph_format.space_after = Pt(14)
 
-    # 8. FEATURE IMPORTANCE RANKINGS
-    add_h1("8. Feature Importance Rankings")
-    doc.add_paragraph("Top predictive feature drivers calculated by the Gradient Boosting model:")
-    add_bullet("1. director_score (28.4% Importance)", "Director's historical track record and critical acclaim score.")
-    add_bullet("2. star_synergy_score (22.1% Importance)", "Combined synergy product between director and lead star cast.")
-    add_bullet("3. budget_usd (16.8% Importance)", "Production budget converted and normalized to USD.")
-    add_bullet("4. cast_score (12.5% Importance)", "Lead actor & actress historical star power index.")
-    add_bullet("5. marketing_ratio (8.2% Importance)", "Ratio of marketing budget relative to production budget.")
-
-    # 9. STRATEGY MATRIX
+    # 9. COMMERCIAL ACQUISITION STRATEGY MATRIX
     add_h1("9. Commercial Acquisition Strategy Matrix")
-    doc.add_paragraph("Business logic matrix mapping predicted quality categories to commercial advice:")
-
     strat_table = doc.add_table(rows=4, cols=4)
     strat_table.alignment = WD_TABLE_ALIGNMENT.CENTER
     s_headers = ["Predicted Category", "Action Badge", "Marketing Spend %", "Platform Placement"]
@@ -298,24 +298,14 @@ def build_ultra_detailed_docx():
 
     doc.add_paragraph().paragraph_format.space_after = Pt(14)
 
-    # 10. INSTALLATION & HOW TO RUN
-    add_h1("10. Installation & Execution Guide")
-    doc.add_paragraph("Step 1: Clone GitHub Repository")
-    doc.add_paragraph("git clone https://github.com/iamharishrohith/CineIntelligence.git\ncd CineIntelligence")
-    doc.add_paragraph("Step 2: Install Python Dependencies")
-    doc.add_paragraph("pip install -r requirements.txt")
-    doc.add_paragraph("Step 3: Run Application")
-    doc.add_paragraph("• Flask App: python app_flask.py (http://localhost:5000)")
-    doc.add_paragraph("• Streamlit App: streamlit run app.py (http://localhost:8501)")
-
-    # Save to both file names securely
-    doc.save(OUTPUT_DOCX)
-    print(f"Detailed document saved at: {OUTPUT_DOCX}")
+    # Save safely
     try:
-        doc.save(OUTPUT_DOCX_PRIMARY)
-        print(f"Primary document saved at: {OUTPUT_DOCX_PRIMARY}")
+        doc.save(OUTPUT_DOCX)
+        print(f"Document saved at: {OUTPUT_DOCX}")
     except Exception as e:
-        print(f"Note: Primary doc locked by Word, updated {OUTPUT_DOCX} successfully.")
+        print(f"Locked output, saving to alternate path: {e}")
+        doc.save(OUTPUT_DOCX_ALT)
+        print(f"Document saved at alternate: {OUTPUT_DOCX_ALT}")
 
 if __name__ == '__main__':
     build_ultra_detailed_docx()
