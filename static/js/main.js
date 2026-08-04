@@ -149,7 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
                         );
                     }
-                    resultsContainer.scrollIntoView({ behavior: 'smooth' });
+
+                    // Precise Scroll Alignment below Fixed Navbar
+                    const navHeight = 90;
+                    const targetY = resultsContainer.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({ top: targetY, behavior: 'smooth' });
 
                 } else {
                     alert('Prediction Error: ' + resJson.message);
